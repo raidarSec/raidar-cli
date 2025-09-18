@@ -1,0 +1,48 @@
+{
+  "risky_opcodes": [
+    "GLOBAL", "EXEC", "EVAL", "INST", "OBJ", "EXT1", "EXT2", "EXT4"
+  ],
+  "risky_code_patterns": [
+    "os.system", "subprocess", "eval", "exec", "compile", "__import__",
+    "open(", "file(", "input(", "raw_input", "getattr", "setattr",
+    "delattr", "hasattr", "globals", "locals", "vars", "dir",
+    "callable", "isinstance", "issubclass", "type", "super",
+    "pickle.load", "pickle.loads", "marshal.load", "marshal.loads",
+    "shelve.open", "dbm.open", "sqlite3.connect", "urllib.urlopen",
+    "urllib2.urlopen", "requests.get", "requests.post", "socket.socket",
+    "ftplib.FTP", "telnetlib.Telnet", "smtplib.SMTP", "poplib.POP3",
+    "imaplib.IMAP4", "nntplib.NNTP", "http.client", "xmlrpc.client",
+    "multiprocessing.Process", "threading.Thread", "ctypes.CDLL",
+    "ctypes.WinDLL", "ctypes.util.find_library", "platform.system",
+    "sys.exit", "os._exit", "os.kill", "os.killpg", "signal.alarm",
+    "signal.pause", "signal.signal", "time.sleep", "time.time"
+  ],
+  "suspicious_imports": [
+    "pickle", "marshal", "shelve", "dbm", "sqlite3", "urllib", "urllib2",
+    "requests", "socket", "ftplib", "telnetlib", "smtplib", "poplib",
+    "imaplib", "nntplib", "http.client", "xmlrpc.client", "multiprocessing",
+    "threading", "ctypes", "platform", "sys", "os", "signal", "time",
+    "subprocess", "shutil", "tempfile", "zipfile", "tarfile", "gzip",
+    "bz2", "lzma", "zlib", "hashlib", "hmac", "secrets", "random",
+    "uuid", "base64", "binascii", "codecs", "encodings", "locale",
+    "gettext", "unicodedata", "stringprep", "readline", "rlcompleter",
+    "cmd", "shlex", "configparser", "argparse", "getopt", "optparse",
+    "logging", "warnings", "traceback", "inspect", "dis", "ast",
+    "parser", "symbol", "token", "keyword", "tokenize", "py_compile",
+    "compileall", "pyclbr", "tabnanny", "py_compile", "compileall"
+  ],
+  "max_file_size_mb": 100,
+  "scan_recursively": true,
+  "output_format": "json",
+  "verbose": false,
+  "pii_indicators": [
+    "email", "phone", "ssn", "credit", "card", "address", "name", "id",
+    "social", "security", "passport", "driver", "license", "birth",
+    "date", "zip", "postal", "code", "country", "state", "city"
+  ],
+  "data_quality_thresholds": {
+    "max_missing_percentage": 50,
+    "max_columns": 1000,
+    "min_rows": 10
+  }
+}
