@@ -16,8 +16,8 @@ def create_test_files():
     """Create test files for demonstrating scanner capabilities"""
     
     # Create temporary directory for test files
-    test_dir = Path("test_files")
-    test_dir.mkdir(exist_ok=True)
+    test_dir = Path(tempfile.mkdtemp(prefix="raidar_test_"))
+    print(f"Creating test files in temporary directory: {test_dir}")
     
     print("Creating test files for scanner demonstration...")
     
@@ -281,22 +281,24 @@ def run_scanner_tests():
     print(f"Check the generated reports:")
     print(f"  - test_scan_report.json")
     print(f"  - dependency_report.json")
-    print(f"  - Test files are in {test_dir}/")
+    print(f"  - Test files were in {test_dir}/")
+    
+    # Clean up temporary test directory
+    import shutil
+    shutil.rmtree(test_dir)
+    print(f"Cleaned up temporary test directory: {test_dir}")
 
 def cleanup_test_files():
     """Clean up test files"""
     import shutil
-    
-    test_dir = Path("test_files")
-    if test_dir.exists():
-        shutil.rmtree(test_dir)
-        print(f"Cleaned up {test_dir}/")
     
     # Clean up report files
     for report_file in ["test_scan_report.json", "dependency_report.json", "scan_report.json"]:
         if Path(report_file).exists():
             Path(report_file).unlink()
             print(f"Cleaned up {report_file}")
+    
+    print("Note: Test files are created in temporary directories and cleaned up automatically")
 
 if __name__ == "__main__":
     import sys
