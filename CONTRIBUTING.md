@@ -5,7 +5,7 @@ Thank you for your interest in contributing to RAIDAR! This document provides gu
 ## Getting Started
 
 1. Fork the repository
-2. Clone your fork: `git clone https://github.com/yourusername/raidar.git`
+2. Clone your fork: `git clone https://github.com/your-username/raidar.git`
 3. Create a feature branch: `git checkout -b feature/your-feature-name`
 4. Install dependencies: `pip install -r requirements.txt`
 
@@ -15,11 +15,8 @@ Thank you for your interest in contributing to RAIDAR! This document provides gu
 # Install development dependencies
 pip install -r requirements.txt
 
-# Run tests
+# Run tests (generates test files automatically)
 python test_scanner.py
-
-# Test the scanner
-python ml_security_scanner.py test_files/risky_script.py
 ```
 
 ## Code Style

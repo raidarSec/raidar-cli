@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
-[![Security](https://img.shields.io/badge/security-scanner-red.svg)](https://github.com/your-org/raidar)
+[![Security](https://img.shields.io/badge/security-scanner-red.svg)](https://github.com/raidarSec)
 
 A comprehensive security scanner for AI/ML projects that analyzes datasets, model weights, third-party libraries, and generates Software Bill of Materials (SBOM) for ML artifacts.
 
@@ -105,7 +105,22 @@ Options:
 
 ## ⚙️ Configuration
 
-Create a `scanner_config.json` file to customize scanning behavior:
+The scanner can be customized using a `scanner_config.json` file. This allows you to:
+
+- **Customize security patterns** - Add or remove risky code patterns and opcodes
+- **Adjust scanning behavior** - Set file size limits, recursive scanning, output format
+- **Configure PII detection** - Define keywords that indicate personally identifiable information
+- **Set data quality thresholds** - Configure rules for data quality analysis
+
+### Usage
+```bash
+# Use custom configuration
+python ml_security_scanner.py /path/to/project/ -c my_config.json
+
+# Or place scanner_config.json in the project root for automatic detection
+```
+
+### Configuration Options
 
 ```json
 {
@@ -124,9 +139,26 @@ Create a `scanner_config.json` file to customize scanning behavior:
   "verbose": false,
   "pii_indicators": [
     "email", "phone", "ssn", "credit", "card", "address", "name", "id"
-  ]
+  ],
+  "data_quality_thresholds": {
+    "max_missing_percentage": 50,
+    "max_columns": 1000,
+    "min_rows": 10
+  }
 }
 ```
+
+### Configuration Fields
+
+- **`risky_opcodes`** - Pickle opcodes to flag as potentially dangerous
+- **`risky_code_patterns`** - Code patterns that could indicate security vulnerabilities
+- **`suspicious_imports`** - Import statements that might indicate malicious code
+- **`max_file_size_mb`** - Skip files larger than this size (in MB)
+- **`scan_recursively`** - Whether to scan subdirectories
+- **`output_format`** - Default output format (json, html, text)
+- **`verbose`** - Enable detailed output during scanning
+- **`pii_indicators`** - Keywords that suggest personally identifiable information
+- **`data_quality_thresholds`** - Rules for detecting data quality issues
 
 ## 📊 Output Formats
 
@@ -302,8 +334,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- **Issues**: [GitHub Issues](https://github.com/your-org/raidar/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-org/raidar/discussions)
+- **Issues**: [GitHub Issues](https://github.com/raidarSec/raidar-cli/issues)
 - **Contributing**: See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## 🙏 Acknowledgments
